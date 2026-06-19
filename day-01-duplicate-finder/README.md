@@ -40,4 +40,3 @@ Paste in a few short texts — support tickets, reviews, bug reports, whatever �
 - `EXPLAINER.md` — how it works, in plain English
 - `DECISIONS.md` — the choices I made, what I rejected, data flow, latency, edge cases
 - `EVALUATION.md` — what I measured and how to read it
-- `CHECK-YOURSELF.md` — questions I use to test whether I've really understood it
