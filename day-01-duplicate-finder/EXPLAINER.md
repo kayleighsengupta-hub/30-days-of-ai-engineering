@@ -16,7 +16,7 @@ To work out how related two texts are, I measure the **angle** between their vec
 - At right angles → score near **0** (unrelated)
 - Opposite → score near **-1**
 
-Little trick in the code: if you *normalise* every vector to length 1 first, the cosine similarity is just their dot product — one less thing to calculate.
+Little trick in the code: if you *normalise* every vector to length 1 first, the cosine similarity is just their dot product, one less thing to calculate.
 
 ### 3. Clustering — grouping the close ones
 I hand all the vectors over to **agglomerative clustering**. It starts with every text in its own little group, then keeps merging the two closest groups together, stopping once nothing left is closer than the threshold I set with the slider.
@@ -27,4 +27,4 @@ The slider is a *similarity* threshold (say 0.70). The clustering wants a *dista
 K-means makes you say *how many* groups you want up front. With duplicate-finding I've got no idea — could be 2 groups, could be 40. Agglomerative lets me say "group anything closer than X" instead, which is exactly the question I'm actually asking.
 
 ## The honest limitation
-Embeddings catch *topical* similarity, not logic or tone. "This app is great" and "This app is terrible" can land surprisingly close because they're so alike topically and structurally, even though they mean opposite things. For finding duplicates that's usually fine — but it's good to know where the tool runs out of road.
+Embeddings catch *topical* similarity, not logic or tone. "This app is great" and "This app is terrible" can land surprisingly close because they're so alike topically and structurally, even though they mean opposite things. For finding duplicates that's usually fine, but it's good to know where the tool runs out of road.
