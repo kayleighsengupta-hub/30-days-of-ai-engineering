@@ -1,12 +1,12 @@
 # 30 Days of AI Engineering
 
-> A daily AI engineering build streak. Embeddings, RAG, agents, evaluation, and more- one project at a time.
+> A daily AI engineering build streak. Embeddings, RAG, agents, evaluation, and more — one project at a time.
 
 I'm teaching myself AI engineering the hands-on way: by building things rather than just reading about them. Each day I put together one small project that's actually runnable, and that teaches me one new skill worth knowing. The point isn't to rack up a pile of look-alike demos, it's to end up with a set of things I genuinely understand and can talk about.
 
 ## How I'm keeping myself honest
 
-- **Something runnable every day.** No half-finished stubs- if it doesn't work, it doesn't count.
+- **Something runnable every day.** No half-finished stubs — if it doesn't work, it doesn't count.
 - **One new skill each time.** Something specific I can actually name and point to.
 - **I have to get *why* it works.** Every project comes with a plain-English explainer. If I can't explain it back, I'm not finished with it yet.
 
@@ -16,7 +16,11 @@ I'm teaching myself AI engineering the hands-on way: by building things rather t
 |------|---------------|
 | `app.py` (or similar) | The working build |
 | `EXPLAINER.md` | The idea, in plain English |
+| `DECISIONS.md` | Choices I made and rejected, data flow, latency, edge cases |
+| `EVALUATION.md` | How I checked it actually works (where it applies) |
 | `README.md` | What it does and how to run it |
+
+*Not every project gets every file — I add the ones that genuinely fit, since a hollow "latency: fast" line on a tiny build helps nobody. The point is to think, not tick boxes.*
 
 ## The builds so far
 
