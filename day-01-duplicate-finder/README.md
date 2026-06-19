@@ -1,26 +1,24 @@
 # Day 01 — Near-Duplicate Finder
 
-Groups short texts that mean the same thing, even when they share no words.
-Built on sentence embeddings + cosine similarity + agglomerative clustering.
+A little tool that finds texts saying the same thing, even when they don't share any of the same words. Behind the scenes it's using sentence embeddings, cosine similarity, and a bit of clustering to pull it off.
 
-**Skill showcased:** vector embeddings, semantic similarity, unsupervised clustering.
+**What I learned today:** vector embeddings, semantic similarity, and unsupervised clustering.
 
-## Run it
+## Running it
 
 ```bash
 pip install streamlit sentence-transformers scikit-learn
 streamlit run app.py
 ```
 
-The first run downloads the embedding model (~80 MB) once, then it's local.
+The first run downloads the embedding model (~80 MB), then everything's local after that.
 
-## Try it
-Paste support tickets, reviews, or bug reports — one per line — and move the
-slider to control how strict "duplicate" means. The default sample data has
-three hidden duplicate pairs (a save-crash, a double-billing, a login issue)
-plus distractors.
+## Having a play
 
-## Files
-- `app.py` — the tool
+Paste in a few short texts — support tickets, reviews, bug reports, whatever — one per line, and use the slider to decide how close two things have to be before they count as duplicates. The sample data has three hidden pairs in it (a save crash, a double-billing complaint, a login issue) plus a few odd ones out to keep it honest.
+
+## What's in here
+
+- `app.py` — the tool itself
 - `EXPLAINER.md` — how it works, in plain English
-- `DEFEND.md` — interview questions + answers
+- `CHECK-YOURSELF.md` — questions I use to test whether I've really understood it

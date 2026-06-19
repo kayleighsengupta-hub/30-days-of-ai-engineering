@@ -1,50 +1,30 @@
 # How this works — in plain English
 
-## The problem
-You have a pile of short texts — support tickets, reviews, bug reports — and
-lots of them are *secretly the same issue* worded differently. "I was charged
-twice" and "Why is there a double payment on my card?" are the same complaint
-but share almost no words. Keyword matching can't catch that. You need
-something that understands **meaning**, not spelling.
+## The problem I'm solving
+You've got a pile of short texts — support tickets, reviews, bug reports — and a load of them are secretly the same thing, just worded differently. "I was charged twice" and "Why is there a double payment on my card?" are the same complaint but barely share a word between them. Keyword matching falls flat here, because what I actually care about is **meaning**, not spelling.
 
 ## The three steps
 
-### 1. Embedding — turn meaning into numbers
-Every text gets fed through an **embedding model** (here, `all-MiniLM-L6-v2`),
-which outputs a list of 384 numbers — a *vector*. Think of it as coordinates in
-a 384-dimensional space. The model was trained so that texts with similar
-meaning land near each other in that space, regardless of the exact words.
+### 1. Embedding — turning meaning into numbers
+Every text gets run through an **embedding model** (here, `all-MiniLM-L6-v2`), which spits out a list of 384 numbers — a *vector*. Think of it as coordinates in a 384-dimensional space. The model's been trained so that texts meaning similar things land near each other in that space, no matter which exact words they use.
 
-So "charged twice" and "double payment" end up as near-neighbours, while
-"login keeps spinning" lands somewhere far away.
+So "charged twice" and "double payment" end up as close neighbours, while "login keeps spinning" sits somewhere completely different.
 
-### 2. Cosine similarity — measure closeness
-To decide how related two texts are, we measure the **angle** between their
-vectors using cosine similarity:
-- Same direction → score near **1** (same meaning)
-- Right angle → score near **0** (unrelated)
+### 2. Cosine similarity — measuring how close
+To work out how related two texts are, I measure the **angle** between their vectors using cosine similarity:
+- Pointing the same way → score near **1** (same meaning)
+- At right angles → score near **0** (unrelated)
 - Opposite → score near **-1**
 
-Trick used in the code: if you *normalise* every vector to length 1 first, the
-cosine similarity is just their dot product. One less step to compute.
+Little trick in the code: if you *normalise* every vector to length 1 first, the cosine similarity is just their dot product — one less thing to calculate.
 
-### 3. Clustering — group the close ones
-We hand all the vectors to **agglomerative clustering**. It starts with every
-text in its own group, then repeatedly merges the two closest groups, stopping
-when nothing left is closer than the threshold you set with the slider.
+### 3. Clustering — grouping the close ones
+I hand all the vectors over to **agglomerative clustering**. It starts with every text in its own little group, then keeps merging the two closest groups together, stopping once nothing left is closer than the threshold I set with the slider.
 
-The slider is a *similarity* threshold (e.g. 0.70). The clustering algorithm
-wants a *distance* threshold, and since these are normalised vectors,
-`distance = 1 - similarity`. That's the `1 - threshold` line in the code.
+The slider is a *similarity* threshold (say 0.70). The clustering wants a *distance* threshold instead, and because these are normalised vectors, `distance = 1 - similarity`. That's what the `1 - threshold` line in the code is doing.
 
 ## Why agglomerative and not k-means?
-K-means makes you say *how many* groups you want up front. With duplicate
-detection you have no idea — could be 2 groups, could be 40. Agglomerative lets
-you instead say "group anything closer than X," which is exactly the question
-we're actually asking.
+K-means makes you say *how many* groups you want up front. With duplicate-finding I've got no idea — could be 2 groups, could be 40. Agglomerative lets me say "group anything closer than X" instead, which is exactly the question I'm actually asking.
 
 ## The honest limitation
-Embeddings capture *topical/semantic* similarity, not logic or sentiment.
-"This app is great" and "This app is terrible" can sit suspiciously close
-because they're structurally and topically near-identical. For true duplicate
-*detection* that's usually fine; just know the tool's edge.
+Embeddings catch *topical* similarity, not logic or tone. "This app is great" and "This app is terrible" can land surprisingly close because they're so alike topically and structurally, even though they mean opposite things. For finding duplicates that's usually fine — but it's good to know where the tool runs out of road.
