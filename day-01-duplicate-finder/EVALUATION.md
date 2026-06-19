@@ -33,7 +33,7 @@ records where a wrong merge is painful to undo? Lean toward precision.
 
 ## What I take from it
 
-I pick the threshold using the curve, not just the single best F1 — then I can
+I pick the threshold using the curve, not just the single best F1, then I can
 say exactly why I chose it, which is the part that actually matters. The
 labelled set here is deliberately tiny so it's easy to read; a real version
 would use more examples so the numbers are less jumpy and more trustworthy.
