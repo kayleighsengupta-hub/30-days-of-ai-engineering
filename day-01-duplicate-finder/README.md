@@ -21,4 +21,3 @@ Paste in a few short texts — support tickets, reviews, bug reports, whatever �
 
 - `app.py` — the tool itself
 - `EXPLAINER.md` — how it works, in plain English
-- `CHECK-YOURSELF.md` — questions I use to test whether I've really understood it
