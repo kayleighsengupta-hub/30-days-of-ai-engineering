@@ -1,7 +1,7 @@
 # Decisions & tradeoffs
 
 The choices I made building this, what I turned down, and why. The point of
-writing these down is partly for me — it forces me to actually have a reason —
+writing these down is partly for me, it forces me to actually have a reason,
 and partly so anyone reading can see the thinking, not just the result.
 
 ### Embeddings, not keyword matching
@@ -13,7 +13,7 @@ obvious call. The cost is needing a model and losing the ability to point at
 
 ### Agglomerative clustering, not k-means
 K-means makes you say how many groups exist up front. For duplicate-finding I
-genuinely don't know — could be 2, could be 40. Agglomerative lets me set a
+genuinely don't know (could be 2, could be 40). Agglomerative lets me set a
 *similarity threshold* instead ("group anything closer than X"), which is the
 actual question. Tradeoff: it's O(n²) on distances, so it doesn't scale to huge
 inputs without help (see "what's next").
@@ -22,7 +22,7 @@ inputs without help (see "what's next").
 It runs on a laptop, embeds quickly, and is good enough for short texts. I'd
 rather the demo be instant than slightly more accurate and sluggish. If
 accuracy mattered more than speed I'd swap in a bigger model and accept the
-cost — it's a one-line change.
+cost, it's a one-line change.
 
 ### Normalising vectors to length 1
 Lets me use a plain dot product as cosine similarity, which keeps the code
